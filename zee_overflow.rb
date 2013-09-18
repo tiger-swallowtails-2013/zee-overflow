@@ -6,3 +6,8 @@ set :database, "sqlite3:///db/zee_overflow_development.sqlite3"
 
 class Question < ActiveRecord::Base
 end
+
+get '/' do
+	@questions = Question.all
+	erb :questions
+end
