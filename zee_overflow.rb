@@ -7,6 +7,10 @@ set :database, "sqlite3:///db/zee_overflow_development.sqlite3"
 class Question < ActiveRecord::Base
   validates_presence_of :title
   has_many :hearts
+
+  def heart_count
+    hearts.count
+  end
 end
 
 class Heart < ActiveRecord::Base

@@ -9,6 +9,7 @@ module FeatureSpec
 end
 
 ActiveRecord::Base.logger = Logger.new('/dev/null')
+
 RSpec.configure do |config|
   config.before do
     Question.destroy_all
