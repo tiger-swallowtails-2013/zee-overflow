@@ -15,4 +15,6 @@ end
 
 post '/questions' do
   Question.create(params[:question])
+  @questions = Question.all
+  erb :questions
 end

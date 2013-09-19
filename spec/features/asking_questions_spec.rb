@@ -6,7 +6,7 @@ describe "Asking a Question" do
   context "when submitting the ask question form" do
     it "saves questions with titles" do
       post "/questions", { question: { title: "What is your favorite color?" } }
-      expect(Question.last.title).to eq "What is your favorite color?"
+      expect(last_response.body).to include "What is your favorite color?"
     end
     it "doesn't save questions without titles" do
       expect {
