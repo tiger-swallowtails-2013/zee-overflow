@@ -1,5 +1,7 @@
 <% @questions.each do |question| %>
-  <p><%= question.heart_count %> <3s - <%= question.title %></p>
+  <form method="post" action="/questions/<%=question.id%>/hearts">
+    <p><%= question.heart_count %> <3s - <%= question.title %><input type="submit" value="<3 it!"></p>
+  </form>
 <% end %>
 
 <% unless @question.valid? %>
