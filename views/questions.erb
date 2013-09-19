@@ -2,7 +2,7 @@
   <p><%= question.title %></p>
 <% end %>
 
-<% unless @question.valid? %>
+<% unless @question.errors.empty? %>
   <% @question.errors.full_messages.each do |error| %>
     <p class="error"><%= error %></p>
   <%  end %>
