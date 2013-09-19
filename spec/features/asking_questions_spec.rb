@@ -1,25 +1,14 @@
-require "./zee_overflow"
-require "rack/test"
+require 'spec_helper'
 
 describe "Asking a Question" do
-  include Rack::Test::Methods
+  include FeatureSpec
 
-  def app
-    Sinatra::Application
+  context "when submitting the ask question form" do
+    it "saves questions with titles" do
+      post "/questions", { question: { title: "What is your favorite color?" } }
+      expect(Question.last.title).to eq "What is your favorite color?"
+    end
+    it "doesn't save questions without titles"
   end
 
-  it "shows the questions on the home page" do
-    Question.create({
-      title: "How long did it take you to grow that magnficient beard?!"
-    })
-    get "/"
-    expect(last_response.body).to include "grow that magnficient beard?!"
-  end
-
-  it "saves questions when the ask question form is submitted" do
-    post "/questions", { question: { title: "What is your favorite color?" } }
-    expect(Question.last.title).to eq "What is your favorite color?"
-  end
-
-  it "doesn't save questions if the form doesn't have a title"
 end
