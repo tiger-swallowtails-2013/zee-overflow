@@ -2,7 +2,7 @@ source "https://rubygems.org"
 
 gem "activerecord"
 gem "sinatra-activerecord"
-gem "sqlite3"
+gem "pg"
 
 group :test do
 	gem "rack-test"
