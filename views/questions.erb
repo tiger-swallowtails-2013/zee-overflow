@@ -1,0 +1,13 @@
+<% @questions.each do |question| %>
+  <p><%= question.title %></p>
+<% end %>
+
+<% unless @question.errors.empty? %>
+  <% @question.errors.full_messages.each do |error| %>
+    <p class="error"><%= error %></p>
+  <%  end %>
+<% end %>
+<form method="POST" action="/questions">
+  <label>Title: <input type="text" name="question[title]" value="<%=@question.title%>"></label>
+  <input type="submit" value="Ask Away!">
+</form>
