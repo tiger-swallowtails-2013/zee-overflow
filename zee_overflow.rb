@@ -5,6 +5,7 @@ require "sinatra/activerecord"
 set :database, "sqlite3:///db/zee_overflow_development.sqlite3"
 
 class Question < ActiveRecord::Base
+  validates_presence_of :title
 end
 
 get '/' do

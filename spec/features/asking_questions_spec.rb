@@ -8,7 +8,11 @@ describe "Asking a Question" do
       post "/questions", { question: { title: "What is your favorite color?" } }
       expect(Question.last.title).to eq "What is your favorite color?"
     end
-    it "doesn't save questions without titles"
+    it "doesn't save questions without titles" do
+      expect {
+        post "/questions", { question: {} }
+      }.not_to change { Question.count }
+    end
   end
 
 end

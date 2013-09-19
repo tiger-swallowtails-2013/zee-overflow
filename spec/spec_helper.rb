@@ -7,3 +7,9 @@ module FeatureSpec
     Sinatra::Application
   end
 end
+
+RSpec.configure do |config|
+  config.before do
+    Question.destroy_all
+  end
+end
