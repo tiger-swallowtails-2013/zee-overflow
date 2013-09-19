@@ -9,12 +9,13 @@ class Question < ActiveRecord::Base
 end
 
 get '/' do
+  @question = Question.new
   @questions = Question.all
   erb :questions
 end
 
 post '/questions' do
-  Question.create(params[:question])
+  @question = Question.create(params[:question])
   @questions = Question.all
   erb :questions
 end
