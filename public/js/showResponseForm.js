@@ -1,5 +1,4 @@
 function showResponseForm(questionElements) {
-  console.log(questionElements);
   for(var qi = 0; qi < questionElements.length; qi++) {
     var question = questionElements[qi];
     var responseForm = questionElements[qi].querySelector('.response_form')

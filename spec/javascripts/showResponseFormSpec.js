@@ -1,5 +1,6 @@
 describe("showResponseForm", function() {
   var question, showFormLink, responseForm;
+
   function appendToDom(element, className, parent) {
     parent = parent || document.body;
     var element = document.createElement(element)
@@ -15,6 +16,10 @@ describe("showResponseForm", function() {
     responseForm = appendToDom('div', 'response_form', question)
 
     showResponseForm(document.querySelectorAll('.question'));
+  });
+
+  afterEach(function() {
+    document.body.removeChild(question);
   });
 
   it('hides the response forms on the page', function() {
