@@ -1,17 +1,35 @@
+<!DOCTYPE html>
+<head>
+  <script src="/js/showResponseForm.js"></script>
+  <script>
+    document.addEventListener('readystatechange', function() {
+      if (document.readyState === "complete") {
+        showResponseForm(document.querySelectorAll('.question'));
+      }
+    });
+  </script>
+
+  <style>
+    .hidden { display:none; }
+  </style>
+</head>
+<body>
 <% @questions.each do |question| %>
+  <div class="question">
   <form method="post" action="/questions/<%=question.id%>/hearts">
-    <h2><%= question.heart_count %> <3s - <%= question.title %><input type="submit" value="<3 it!"></h2>
+    <h2><%= question.heart_count %> <3s - <%= question.title %><input type="submit" value="<3 it!"><a href="#" class="show_response_form">Respond</a></h2>
     <% question.responses.each do |response| %>
       <div><%= response.body %></div>
     <% end %>
   </form>
 
-  <form method="post" action="/questions/<%=question.id%>/responses">
+  <form class="response_form"  method="post" action="/questions/<%=question.id%>/responses">
     <textarea name="response[body]">
     </textarea>
     <input type="submit" value="Respond!" />
   </form>
 
+  </div>
 <% end %>
 
 <% unless @question.errors.empty? %>
@@ -24,3 +42,5 @@
   <label>Title: <input type="text" name="question[title]" value="<%=@question.title%>"></label>
   <input type="submit" value="Ask Away!">
 </form>
+</body>
+</html>
