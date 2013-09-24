@@ -1,3 +1,4 @@
+ENV['RACK_ENV'] ||= 'test'
 require "./zee_overflow"
 require "rack/test"
 module FeatureSpec
@@ -7,7 +8,6 @@ module FeatureSpec
     Sinatra::Application
   end
 end
-
 ActiveRecord::Base.logger = Logger.new('/dev/null')
 
 RSpec.configure do |config|

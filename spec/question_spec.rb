@@ -10,6 +10,14 @@ describe Question do
     end
   end
 
+  describe 'relations' do
+    it "has many responses" do
+      question = Question.create(title: "foo")
+      expect(question.responses).to be_empty
+    end
+
+  end
+
   describe "#heart_count" do
     it "counts hearts created for the question" do
       question = Question.create(title: "Why do you like pandas?")
