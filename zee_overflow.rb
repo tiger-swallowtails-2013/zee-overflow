@@ -20,8 +20,12 @@ class Heart < ActiveRecord::Base
 end
 
 class Response < ActiveRecord::Base
+  validates_presence_of :body
 end
 
+configure :test do
+  set :raise_errors, true
+end
 get '/' do
   @question = Question.new
   @questions = Question.all
@@ -38,4 +42,9 @@ post '/questions/:question_id/hearts' do
   question = Question.find_by_id(params[:question_id])
   question.hearts.create
   redirect "/"
+end
+
+post '/questions/:question_id/responses' do
+  question = Question.find_by_id(params[:question_id])
+  question.responses.create(params[:response])
 end
