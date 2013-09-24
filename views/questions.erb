@@ -1,7 +1,17 @@
 <% @questions.each do |question| %>
   <form method="post" action="/questions/<%=question.id%>/hearts">
-    <p><%= question.heart_count %> <3s - <%= question.title %><input type="submit" value="<3 it!"></p>
+    <h2><%= question.heart_count %> <3s - <%= question.title %><input type="submit" value="<3 it!"></h2>
+    <% question.responses.each do |response| %>
+      <div><%= response.body %></div>
+    <% end %>
   </form>
+
+  <form method="post" action="/questions/<%=question.id%>/responses">
+    <textarea name="response[body]">
+    </textarea>
+    <input type="submit" value="Respond!" />
+  </form>
+
 <% end %>
 
 <% unless @question.errors.empty? %>

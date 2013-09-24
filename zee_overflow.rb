@@ -47,4 +47,5 @@ end
 post '/questions/:question_id/responses' do
   question = Question.find_by_id(params[:question_id])
   question.responses.create(params[:response])
+  redirect "/"
 end

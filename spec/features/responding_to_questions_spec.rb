@@ -5,6 +5,15 @@ describe "Responding to a Question" do
 
   let(:question) { Question.create(title: "How much chuck could a woodchuck chuck?") }
 
+  it "redirects to the home page" do
+
+    post "/questions/#{question.id}/responses", {
+      response: { }
+    }
+    expect(last_response["Location"]).to eq "http://example.org/"
+
+  end
+
   it "saves responses with bodies" do
 
     post "/questions/#{question.id}/responses", {
@@ -12,7 +21,8 @@ describe "Responding to a Question" do
         body: "42"
       }
     }
-    expect(question.responses.last.body).to eq("42")
+    follow_redirect!
+    expect(last_response.body).to include "42"
   end
 
   it "Doesn't save responses with bodies" do
