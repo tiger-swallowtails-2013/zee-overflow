@@ -9,6 +9,7 @@ set :database, ENV['DATABASE_URL']
 class Question < ActiveRecord::Base
   validates_presence_of :title
   has_many :hearts
+  has_many :responses
 
   def heart_count
     hearts.count
@@ -16,6 +17,9 @@ class Question < ActiveRecord::Base
 end
 
 class Heart < ActiveRecord::Base
+end
+
+class Response < ActiveRecord::Base
 end
 
 get '/' do
