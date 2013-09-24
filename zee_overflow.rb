@@ -2,7 +2,9 @@ require 'active_record'
 require "sinatra"
 require "sinatra/activerecord"
 
-set :database, "sqlite3:///db/zee_overflow_development.sqlite3"
+
+ENV['DATABASE_URL'] ||= "postgres://localhost/zee_overflow_development"
+set :database, ENV['DATABASE_URL']
 
 class Question < ActiveRecord::Base
   validates_presence_of :title
